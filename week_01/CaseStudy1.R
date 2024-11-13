@@ -1,7 +1,7 @@
 #Define the link to the data
 library(tidyverse)
 
-#define the link to the data - you can try this in your browser too.  Note that the URL ends in .txt.
+# define the link to the data - you can try this in your browser too.  Note that the URL ends in .txt.
 dataurl="https://data.giss.nasa.gov/tmp/gistemp/STATIONS_v4/tmp_USW00014733_14_0_1/station.csv"
 
 #the next line tells the NASA site to create the temporary file
