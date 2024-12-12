@@ -1,0 +1,35 @@
+---
+title: "Carbon Dioxide Concentrations at Mona Loa Observatory"
+author: "Andrea Harder"
+format: 
+  html: default
+  pptx: default
+  docx: default
+  gfm: default
+editor: visual
+---
+
+```{r setup, include = FALSE}
+library(readr)
+library(quarto)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+Filtered <- read_table("ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_annmean_mlo.txt", skip = 44)%>%
+  rename("Year"="#", "mean"="year", "#"="mean")
+Filtered2<- Filtered %>%
+  slice(1:5)
+```
+
+```{r, echo = FALSE}
+colnames(Filtered) <- c("Year", "Mean", "num")
+ggplot() +
+  geom_line(data = Filtered, aes(x = Year, y = Mean, color = "red"))+
+  labs(x= "Year", y="Mauna Loa Annual Mean Co2(ppm)", title = "Annual Mean Carbon Dioxide Concentrations", subtitle = " 1959-Present")+
+  theme(legend.position = "none", plot.title = element_text(hjust = .5), plot.subtitle = element_text(hjust = .5))
+
+```
+
+```{r, echo = FALSE}
+knitr::kable(Filtered2[1:2])
+```
